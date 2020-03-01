@@ -60,6 +60,11 @@ def mars_promotion():
                            filename=url_for('static', filename='img/mars.jpg'))
 
 
+@app.route('/astronaut_selection/')
+def application():
+    return render_template('application.html', style=url_for('static', filename='css/style.css'))
+
+
 if __name__ == '__main__':
-    print('http://127.0.0.1:8000/promotion_image/')
+    print('http://127.0.0.1:8000/astronaut_selection/')
     app.run(port=8000, host='127.0.0.1')
