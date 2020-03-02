@@ -71,7 +71,7 @@ def choice_planet(planet_name):
                            planet_name=planet_name)
 
 
-@app.route('/results/<nickname>/<int:level>/<float:rating>')
+@app.route('/results/<nickname>/<int:level>/<float:rating>/')
 def result_test(nickname, level, rating):
     return render_template('rating.html', style=url_for('static', filename='css/style.css'),
                            nickname=nickname, level=level, rating=rating)
