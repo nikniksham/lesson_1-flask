@@ -71,6 +71,13 @@ def choice_planet(planet_name):
                            planet_name=planet_name)
 
 
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def result_test(nickname, level, rating):
+    return render_template('rating.html', style=url_for('static', filename='css/style.css'),
+                           nickname=nickname, level=level, rating=rating)
+
+
 if __name__ == '__main__':
     print('http://127.0.0.1:8000/choice/Mapc/')
+    print('http://127.0.0.1:8000/results/Rjkz/2/62.89')
     app.run(port=8000, host='127.0.0.1')
