@@ -65,6 +65,12 @@ def application():
     return render_template('application.html', style=url_for('static', filename='css/style.css'))
 
 
+@app.route('/choice/<planet_name>/')
+def choice_planet(planet_name):
+    return render_template('choice_planet.html', style=url_for('static', filename='css/style.css'),
+                           planet_name=planet_name)
+
+
 if __name__ == '__main__':
-    print('http://127.0.0.1:8000/astronaut_selection/')
+    print('http://127.0.0.1:8000/choice/Mapc/')
     app.run(port=8000, host='127.0.0.1')
