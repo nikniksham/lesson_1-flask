@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request
 
 app = Flask(__name__)
 
@@ -77,7 +77,19 @@ def result_test(nickname, level, rating):
                            nickname=nickname, level=level, rating=rating)
 
 
+@app.route('/load_photo/', methods=['POST', 'GET'])
+def load_image():
+    if request.method == 'GET':
+        return render_template('load_image.html', filename=url_for('static', filename='img/image.png'),
+                               style=url_for('static', filename='css/style.css'))
+    if request.method == 'POST':
+        f = request.files['file']
+        with open(url_for('static', filename='img/image.png')[1:], 'wb') as fr:
+            fr.write(f.read())
+        return render_template('load_image.html', filename=url_for('static', filename='img/image.png'),
+                               style=url_for('static', filename='css/style.css'))
+
+
 if __name__ == '__main__':
-    print('http://127.0.0.1:8000/choice/Mapc/')
-    print('http://127.0.0.1:8000/results/Rjkz/2/62.89')
-    app.run(port=8000, host='127.0.0.1')
+    print('http://127.0.0.1:8005/load_photo/')
+    app.run(port=8005, host='127.0.0.1')
